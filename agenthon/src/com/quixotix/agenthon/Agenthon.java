@@ -16,7 +16,7 @@ public class Agenthon implements ApplicationListener {
 		float h = Gdx.graphics.getHeight();
 		
 		camera = new OrthographicCamera(w, h);
-        camera.setOrtho(false);
+        camera.setToOrtho(false);
 		batch = new SpriteBatch();
 	}
 
