@@ -7,8 +7,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Agenthon implements ApplicationListener {
-	private OrthographicCamera camera;
+	private OrthographicCamera camera, hudCamera;
 	private SpriteBatch batch;
+	private SwordButton swordButton;
+	private Player player;
 	
 	@Override
 	public void create() {		
@@ -17,7 +19,12 @@ public class Agenthon implements ApplicationListener {
 		
 		camera = new OrthographicCamera(w, h);
         camera.setToOrtho(false);
+        hudCamera = new OrthographicCamera(w, h);
+        hudCamera.setToOrtho(false);
 		batch = new SpriteBatch();
+		
+		swordButton = new SwordButton(w);
+		player = new Player(128, 128);
 	}
 
 	@Override
@@ -32,8 +39,14 @@ public class Agenthon implements ApplicationListener {
 		
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		//Draw stuff here
+		player.draw(batch);
 		batch.end();
+		batch.setProjectionMatrix(hudCamera.combined);
+		batch.begin();
+		swordButton.draw(batch);
+		batch.end();
+		
+		player.update();
 	}
 
 	@Override
