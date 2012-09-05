@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="agenthon" default="help">
     <property name="root.dir" value=".." />
-    <property name="main.project.dir" value="${root.dir}/agenthon" />
+    <property name="main.project.dir" value="${root.dir}/main" />
     
     <!-- The local.properties file is created and updated by the 'android' tool.
          It contains the path to the SDK. It should *NOT* be checked into

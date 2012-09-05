@@ -8,7 +8,7 @@
                          Ignoring the copied JAR in version control removes problems with
                          duplication. -->
                 <copy todir="libs" verbose="${verbose}">
-                        <fileset dir="${root.dir}/agenthon/libs" includes="gdx.jar" />
+                        <fileset dir="${root.dir}/main/libs" includes="gdx.jar" />
                 </copy>
         </target>
 </project>
