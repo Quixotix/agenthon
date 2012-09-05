@@ -45,8 +45,8 @@ public class Agenthon implements ApplicationListener {
 		
 		controlProcessor.draw(batch);
 		
-		player.xVelocity = controlProcessor.dPad.offsetX * 3;
-		player.yVelocity = controlProcessor.dPad.offsetY * 3;
+		player.xVelocity = controlProcessor.dPad.xVelocity * 3;
+		player.yVelocity = controlProcessor.dPad.yVelocity * 3;
 		player.update();
 	}
 

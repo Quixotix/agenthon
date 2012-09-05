@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 
 public class DirectionalPad extends Button {
-	float offsetX, offsetY;
+	float xVelocity, yVelocity;
 	float centerX, centerY;
 	float halfWidth, halfHeight;
 	public DirectionalPad() {
@@ -16,14 +16,20 @@ public class DirectionalPad extends Button {
 		halfHeight = getHeight() / 2;
 		centerX = getX() + halfWidth;
 		centerY = getY() + halfHeight;
+        xVelocity = 0;
+        yVelocity = 0;
 	}
 	
 	@Override
 	public void touchDragged(Vector3 touchPos, int pointer) {
 		if (touched) {
 			if (this.pointer == pointer) {
-				offsetX = (touchPos.x - centerX) / halfWidth;
-				offsetY = (touchPos.y - centerY) / halfHeight;
+				xVelocity = (touchPos.x - centerX) / halfWidth;
+                if (xVelocity > 1) xVelocity = 1;
+                if (xVelocity < -1) xVelocity = -1;
+				yVelocity = (touchPos.y - centerY) / halfHeight;
+                if (yVelocity > 1) yVelocity = 1;
+                if (yVelocity < -1) yVelocity = -1;
 			}
 		}
 	}
@@ -33,8 +39,8 @@ public class DirectionalPad extends Button {
 		if (touched) {
 			if (this.pointer == pointer) {
 				touched = false;
-				offsetX = 0;
-				offsetY = 0;
+				xVelocity = 0;
+				yVelocity = 0;
 				Gdx.app.log(TAG, "released");
 			}
 		}
