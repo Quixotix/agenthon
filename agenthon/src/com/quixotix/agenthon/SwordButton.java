@@ -2,11 +2,12 @@ package com.quixotix.agenthon;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class SwordButton extends Sprite {
-	public SwordButton(float screenWidth) {
+public class SwordButton extends Button {
+	
+	public SwordButton() {
 		super(new Texture(Gdx.files.internal("swordbutton.png")));
+		float screenWidth = Gdx.graphics.getWidth();
 		setX(screenWidth - getWidth());
 		setY(0);
 	}

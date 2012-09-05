@@ -12,7 +12,7 @@ public class Player {
 	public TextureRegion[][] frames;
 	private int frameX, frameY;
 	private boolean attacking;
-	public int xVelocity, yVelocity;
+	public float xVelocity, yVelocity;
 	public static final String TAG = "MageCrawler_Player";
 	public final int textureColumns = 16;
 	public final int textureRows = 4;
@@ -33,7 +33,8 @@ public class Player {
 	}
 	
 	public void update() {
-		
+		x += xVelocity;
+		y += yVelocity;
 	}
 	
 	public void draw(SpriteBatch batch) {
