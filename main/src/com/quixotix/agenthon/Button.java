@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector3;
 public class Button extends Sprite {
 	public boolean touched;
 	public int pointer;
-	public static final String TAG = "Agenthon_Button";
+	public static final String TAG = "Agenthon";
 	
 	public Button(Texture texture) {
 		super(texture);
@@ -20,7 +20,7 @@ public class Button extends Sprite {
 			if (getBoundingRectangle().contains(touchPos.x, touchPos.y)) {
 				touched = true;
 				this.pointer = pointer;
-				Gdx.app.log(TAG, "touched");
+				Gdx.app.debug(TAG, "Button.touchDown()");
 			}
 		}
 	}
@@ -29,7 +29,7 @@ public class Button extends Sprite {
 		if (touched) {
 			if (this.pointer == pointer) {
 				touched = false;
-				Gdx.app.log(TAG, "released");
+				Gdx.app.debug(TAG, "Button.touchUp()");
 			}
 		}
 	}
@@ -38,3 +38,4 @@ public class Button extends Sprite {
 		
 	}
 }
+

@@ -13,7 +13,7 @@ public class Player {
 	private int frameX, frameY;
 	private boolean attacking;
 	public float xVelocity, yVelocity;
-	public static final String TAG = "MageCrawler_Player";
+	public static final String TAG = "Agenthon";
 	public final int textureColumns = 16;
 	public final int textureRows = 4;
 	

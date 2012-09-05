@@ -41,7 +41,7 @@ public class DirectionalPad extends Button {
 				touched = false;
 				xVelocity = 0;
 				yVelocity = 0;
-				Gdx.app.log(TAG, "released");
+				Gdx.app.debug(TAG, "DirectionalPad.touchUp()");
 			}
 		}
 	}

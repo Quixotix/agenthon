@@ -10,7 +10,7 @@ public class ControlProcessor implements InputProcessor {
 	private OrthographicCamera camera;
 	public SwordButton swordButton;
 	public DirectionalPad dPad;
-	public static final String TAG = "Agenthon_ControlProcessor";
+	public static final String TAG = "Agenthon";
 	public ControlProcessor() {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
