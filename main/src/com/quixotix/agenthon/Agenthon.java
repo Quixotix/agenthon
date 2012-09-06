@@ -1,6 +1,6 @@
 package com.quixotix.agenthon;
 
-import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
-public class Agenthon implements ApplicationListener {
+public class Agenthon extends Game {
     public static final String TAG = "Agenthon";
     private OrthographicCamera camera;
     private ControlProcessor controlProcessor;
