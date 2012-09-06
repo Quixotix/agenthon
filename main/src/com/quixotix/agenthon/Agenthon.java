@@ -53,8 +53,26 @@ public class Agenthon implements ApplicationListener {
         
         controlProcessor.draw(batch);
         
-        player.xVelocity = controlProcessor.dPad.xVelocity * 3;
-        player.yVelocity = controlProcessor.dPad.yVelocity * 3;
+        if (controlProcessor.upArrow.touched) {
+            player.north = true;
+        } else {
+            player.north = false;
+        }
+        if (controlProcessor.downArrow.touched) {
+            player.south = true;
+        } else {
+            player.south = false;
+        }
+        if (controlProcessor.leftArrow.touched) {
+            player.west = true;
+        } else {
+            player.west = false;
+        }
+        if (controlProcessor.rightArrow.touched) {
+            player.east = true;
+        } else {
+            player.east = false;
+        }
         player.update();
     }
 

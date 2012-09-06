@@ -35,7 +35,18 @@ public class Button extends Sprite {
 	}
 	
 	public void touchDragged(Vector3 touchPos, int pointer) {
-		
+        if (this.pointer == pointer) {
+            if (!getBoundingRectangle().contains(touchPos.x, touchPos.y)) {
+                touched = false;
+                Gdx.app.debug(TAG, "Dragged off");
+            }
+        } else {
+            if (getBoundingRectangle().contains(touchPos.x, touchPos.y)) {
+                touched = true;
+                this.pointer = pointer;
+                Gdx.app.debug(TAG, "Dragged on");
+            }
+        }
 	}
 }
 

@@ -9,7 +9,10 @@ import com.badlogic.gdx.math.Vector3;
 public class ControlProcessor implements InputProcessor {
 	private OrthographicCamera camera;
 	public SwordButton swordButton;
-	public DirectionalPad dPad;
+	public UpArrow upArrow;
+    public DownArrow downArrow;
+    public LeftArrow leftArrow;
+    public RightArrow rightArrow;
 	public static final String TAG = "Agenthon";
 	public ControlProcessor() {
 		float w = Gdx.graphics.getWidth();
@@ -18,14 +21,20 @@ public class ControlProcessor implements InputProcessor {
         camera.setToOrtho(false);
         
 		swordButton = new SwordButton();
-		dPad = new DirectionalPad();
+        upArrow = new UpArrow();
+        downArrow = new DownArrow();
+        leftArrow = new LeftArrow();
+        rightArrow = new RightArrow();
 	}
 	
 	public void draw(SpriteBatch batch) {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		swordButton.draw(batch);
-		dPad.draw(batch);
+		upArrow.draw(batch);
+        downArrow.draw(batch);
+        leftArrow.draw(batch);
+        rightArrow.draw(batch);
 		batch.end();
 	}
 	
@@ -50,13 +59,19 @@ public class ControlProcessor implements InputProcessor {
 		touchPos.set(screenX, screenY, 0);
 		camera.unproject(touchPos);
 		swordButton.touchDown(touchPos, pointer);
-		dPad.touchDown(touchPos, pointer);
+		upArrow.touchDown(touchPos, pointer);
+		downArrow.touchDown(touchPos, pointer);
+		leftArrow.touchDown(touchPos, pointer);
+		rightArrow.touchDown(touchPos, pointer);
 		return false;
 	}
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		swordButton.touchUp(pointer);
-		dPad.touchUp(pointer);
+		upArrow.touchUp(pointer);
+		downArrow.touchUp(pointer);
+		leftArrow.touchUp(pointer);
+		rightArrow.touchUp(pointer);
 		return false;
 	}
 	@Override
@@ -64,7 +79,10 @@ public class ControlProcessor implements InputProcessor {
 		Vector3 touchPos = new Vector3();
 		touchPos.set(screenX, screenY, 0);
 		camera.unproject(touchPos);
-		dPad.touchDragged(touchPos, pointer);
+		upArrow.touchDragged(touchPos, pointer);
+		downArrow.touchDragged(touchPos, pointer);
+		leftArrow.touchDragged(touchPos, pointer);
+		rightArrow.touchDragged(touchPos, pointer);
 		return false;
 	}
 	@Override

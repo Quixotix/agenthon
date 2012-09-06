@@ -12,7 +12,8 @@ public class Player {
 	public TextureRegion[][] frames;
 	private int frameX, frameY;
 	private boolean attacking;
-	public float xVelocity, yVelocity;
+	public boolean north, east, south, west;
+    public float speed;
 	public static final String TAG = "Agenthon";
 	public final int textureColumns = 16;
 	public final int textureRows = 4;
@@ -20,8 +21,6 @@ public class Player {
 	public Player(int x, int y) {
 		this.x = x;
 		this.y = y;
-		xVelocity = 0;
-		yVelocity = 0;
 		frameX = 0;
 		frameY = 2;
 		width = 64;
@@ -30,11 +29,20 @@ public class Player {
         frames = TextureRegion.split(sheet, sheet.getWidth() / textureColumns,
         		sheet.getHeight() / textureRows);
         attacking = false;
+        north = east = south = west = false;
+        speed = 3;
 	}
 	
 	public void update() {
-		x += xVelocity;
-		y += yVelocity;
+        if (north) {
+            y += speed;
+        } else if (east) {
+            x += speed;
+        } else if (south) {
+            y -= speed;
+        } else if (west) {
+            x -= speed;
+        }
 	}
 	
 	public void draw(SpriteBatch batch) {
