@@ -8,8 +8,8 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "Agenthon";
 		cfg.useGL20 = true;
-		cfg.width = 480;
-		cfg.height = 320;
+		cfg.width = 800;
+		cfg.height = 480;
 		
 		new LwjglApplication(new Agenthon(), cfg);
 	}

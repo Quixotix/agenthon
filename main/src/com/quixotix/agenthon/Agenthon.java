@@ -7,25 +7,38 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-
 public class Agenthon extends Game {
 
     public static final String TAG = "Agenthon";
     
-    // screens
-    private String splashScreen;
+    private static boolean showSplash = true;
     
+    // screens
+    public GameScreen gameScreen;
+    
+    /*
     private OrthographicCamera camera;
     private ControlProcessor controlProcessor;
     private SpriteBatch batch;
     private Player player;
+    */
     
     @Override
-    public void create() {        
+    public void create() {               
         // Gdx.app.setLogLevel(Application.LOG_ERROR);
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         Gdx.app.debug(TAG, "Agenthon.create()");
         
+        // create screens
+        gameScreen = new GameScreen(this);
+        
+        if (showSplash) {
+            setScreen(new SplashScreen(this)); 
+        } else {
+            setScreen(gameScreen);
+        }
+        
+        /*
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         
@@ -36,63 +49,14 @@ public class Agenthon extends Game {
         Gdx.input.setInputProcessor(controlProcessor);
         
         batch = new SpriteBatch();
-        
         player = new Player(0, 128);
+        */
     }
 
     @Override
     public void dispose() {
+        super.dispose();
         Gdx.app.debug(TAG, "Agenthon.dispose()");
-        batch.dispose();
-    }
-
-    @Override
-    public void render() {        
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
-        batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-        player.draw(batch);
-        batch.end();
-        
-        controlProcessor.draw(batch);
-        
-        if (controlProcessor.upArrow.touched) {
-            player.north = true;
-        } else {
-            player.north = false;
-        }
-        if (controlProcessor.downArrow.touched) {
-            player.south = true;
-        } else {
-            player.south = false;
-        }
-        if (controlProcessor.leftArrow.touched) {
-            player.west = true;
-        } else {
-            player.west = false;
-        }
-        if (controlProcessor.rightArrow.touched) {
-            player.east = true;
-        } else {
-            player.east = false;
-        }
-        player.update();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        Gdx.app.debug(TAG, "Agenthon.resize()");
-    }
-
-    @Override
-    public void pause() {
-        Gdx.app.debug(TAG, "Agenthon.pause()");
-    }
-
-    @Override
-    public void resume() {
-        Gdx.app.debug(TAG, "Agenthon.resume()");
+        gameScreen.dispose();
     }
 }
