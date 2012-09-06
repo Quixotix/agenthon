@@ -1,5 +1,5 @@
 <project name="agenthon" default="dist">
-    <property name="verbose" value="yes" />
+    <property name="verbose" value="no" />
     
     <property name="root.dir" value=".." />
     

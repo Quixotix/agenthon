@@ -14,6 +14,7 @@ public class ControlProcessor implements InputProcessor {
     public LeftArrow leftArrow;
     public RightArrow rightArrow;
 	public static final String TAG = "Agenthon";
+	
 	public ControlProcessor() {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();

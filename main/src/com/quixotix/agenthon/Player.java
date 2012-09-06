@@ -25,7 +25,7 @@ public class Player {
 		frameY = 2;
 		width = 64;
 		height = 64;
-		sheet = new Texture(Gdx.files.internal("player.png"));
+		sheet = new Texture(Gdx.files.internal("textures/player.png"));
         frames = TextureRegion.split(sheet, sheet.getWidth() / textureColumns,
         		sheet.getHeight() / textureRows);
         attacking = false;

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class RightArrow extends Button {
 	public RightArrow() {
-		super(new Texture(Gdx.files.internal("arrowright.png")));
+		super(new Texture(Gdx.files.internal("textures/arrowright.png")));
         setX(128);
         setY(64);
 	}
