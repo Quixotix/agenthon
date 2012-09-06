@@ -95,6 +95,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         Gdx.app.debug(Agenthon.TAG, "GameScreen.dispose()");
-        batch.dispose();
+        if (batch != null) batch.dispose();
     }
 }

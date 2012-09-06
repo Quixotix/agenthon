@@ -4,70 +4,61 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class SplashScreen implements InputProcessor, Screen {
 
     public Agenthon game;
     
-    private OrthographicCamera camera;
-	private SpriteBatch batch;
+    private Stage stage;
 	private Texture texture;
-	private Sprite sprite;
 	
-    
+
     public SplashScreen(Agenthon game) {
         this.game = game;
     }
     
     @Override
-    public void render(float delta) {        
+    public void render(float delta) {    
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		sprite.draw(batch);
-		batch.end();
+		stage.draw();
     }
 
     @Override
-    public void resize(int width, int height) {
-        Gdx.app.debug(Agenthon.TAG, String.format("SplashScreen.resize(%d, %d)", width, height));
-    }
+    public void resize(int width, int height) {}
 
     @Override
     public void show() {
         Gdx.app.debug(Agenthon.TAG, "SplashScreen.show()");
-        Gdx.input.setInputProcessor(this);
-        
-        float width = Gdx.graphics.getWidth();
-		float height = Gdx.graphics.getHeight();
-		
-        camera = new OrthographicCamera(width, height);
-        camera.setToOrtho(false);
-        
-		batch = new SpriteBatch();
-		texture = new Texture(Gdx.files.internal("textures/splash-logo.png"));
-		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		sprite = new Sprite(texture);
-		
-		// center
-		sprite.setPosition((width/2)-(sprite.getWidth()/2), (height/2)-(sprite.getHeight()/2));
-    }
 
+		float width = Gdx.graphics.getWidth();
+		float height = Gdx.graphics.getHeight();
+		stage = new Stage(width, height, true);
+		stage.getCamera().position.set(width/2, height/2, 0);
+		texture = new Texture(Gdx.files.internal("textures/splash.png"));
+		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 301);
+		Image image = new Image(region);
+		image.setFillParent(true);
+		stage.addActor(image);
+		
+		Gdx.input.setInputProcessor(this);
+    }
 
     @Override
     public void hide() {
+        // cleanup in hide() rather than dispose since a splash screen is only
+        // show once.
         Gdx.app.debug(Agenthon.TAG, "SplashScreen.hide()");
         Gdx.input.setInputProcessor(null);
-        batch.dispose();
 		texture.dispose();
+		stage.dispose();
     }
 
     @Override
@@ -125,6 +116,6 @@ public class SplashScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        Gdx.app.debug(Agenthon.TAG, "SplashScreen.dispose()");
+
     }
 }
