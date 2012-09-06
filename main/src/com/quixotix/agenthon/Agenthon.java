@@ -9,7 +9,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class Agenthon extends Game {
+
     public static final String TAG = "Agenthon";
+    
+    // screens
+    private String splashScreen;
+    
     private OrthographicCamera camera;
     private ControlProcessor controlProcessor;
     private SpriteBatch batch;
