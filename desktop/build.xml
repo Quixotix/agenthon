@@ -1,0 +1,77 @@
+<project name="agenthon" default="dist">
+    <property name="verbose" value="yes" />
+    
+    <property name="root.dir" value=".." />
+    
+    <property name="main.dir" value="${root.dir}/main" />
+    <property name="main.src.dir" value="${main.dir}/src"/>
+    <property name="main.libs.dir" value="${main.dir}/libs"/>
+    <property name="main.libs.absolute.dir" location="${main.libs.dir}" />
+    
+    <property name="assets.dir" value="${root.dir}/android/assets"/>
+    
+    <property name="src.dir" value="src" />
+    <property name="src.absolute.dir" location="${src.dir}" />
+    
+    <property name="libs.dir" value="libs" />
+    <property name="libs.absolute.dir" location="${libs.dir}" />
+    
+    <property name="out.dir" value="bin" />
+    <property name="out.assets.dir" value="${out.dir}/assets" />
+    <property name="out.absolute.dir" location="${out.dir}" />
+    <property name="out.classes.absolute.dir" location="${out.dir}/classes" />
+       
+    <target name="clean">
+        <delete dir="${out.dir}" verbose="${verbose}" />
+    </target>
+    
+    <target name="pre-compile">
+        <mkdir dir="${out.dir}" />
+        <mkdir dir="${out.assets.dir}" />
+        <copy includeemptydirs="false" todir="${out.assets.dir}">
+            <fileset dir="${assets.dir}">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <mkdir dir="${out.classes.absolute.dir}" />
+    </target>
+    
+    <target name="compile" depends="pre-compile">
+        <path id="javac.classpath">
+            <fileset dir="${libs.absolute.dir}">
+                <include name="**/*.jar" />
+            </fileset>
+            <fileset dir="${main.libs.absolute.dir}">
+                <include name="**/*.jar" />
+            </fileset>
+        </path>
+        <javac 
+            srcdir="${src.dir}" 
+            destdir="${out.classes.absolute.dir}"
+            classpathref="javac.classpath"
+            includeantruntime="false"
+            debug="on"
+            verbose="${verbose}">
+            <src path="${main.src.dir}" />
+            <src path="${out.assets.dir}" />
+        </javac>
+    </target>
+    
+    <target name="dist" depends="compile">
+        <jar 
+            destfile="${out.absolute.dir}/Agenthon.jar"
+            basedir="${out.classes.absolute.dir}">
+            <zipgroupfileset dir="${libs.absolute.dir}" includes="*.jar"/>
+            <zipgroupfileset dir="${main.libs.absolute.dir}" includes="*.jar"/>
+            <fileset dir="${out.assets.dir}" />
+            <manifest>
+                <attribute name="Main-Class" value="com.quixotix.agenthon.Main"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <target name="run">
+        <java jar="${out.absolute.dir}/agenthon.jar" fork="true"/>
+    </target>
+
+</project>
