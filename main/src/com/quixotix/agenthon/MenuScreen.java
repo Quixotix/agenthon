@@ -69,7 +69,7 @@ public class MenuScreen implements Screen {
 		playButton.setPosition(450, 350);
 		playButton.addListener(new InputListener() {
 		    public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                    return true;
+                return true;
             }
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 game.setScreen(game.gameScreen);
