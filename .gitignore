@@ -18,3 +18,7 @@ local.properties
 
 # ignore the copy of gdx.jar created by agenthon-android/custom_rules.xml
 android/libs/gdx.jar
+
+# ignore files packed during build
+images-packed.atlas
+images-packed.png

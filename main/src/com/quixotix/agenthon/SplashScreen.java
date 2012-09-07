@@ -64,7 +64,7 @@ public class SplashScreen implements InputProcessor, Screen {
     @Override
 	public boolean keyDown(int keycode) {
 	    Gdx.app.debug(Agenthon.TAG, "SplashScreen.keyDown()");
-	    game.setScreen(game.gameScreen);
+	    game.setScreen(game.menuScreen);
 		return true;
 	}
 	
@@ -81,7 +81,7 @@ public class SplashScreen implements InputProcessor, Screen {
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		Gdx.app.debug(Agenthon.TAG, "SplashScreen.touchDown()");
-	    game.setScreen(game.gameScreen);
+	    game.setScreen(game.menuScreen);
 	    return true;
 	}
 	

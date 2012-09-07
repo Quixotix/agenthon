@@ -15,6 +15,7 @@ public class Agenthon extends Game {
     
     // screens
     public GameScreen gameScreen;
+    public MenuScreen menuScreen;
     
     /*
     private OrthographicCamera camera;
@@ -31,11 +32,12 @@ public class Agenthon extends Game {
         
         // create screens
         gameScreen = new GameScreen(this);
+        menuScreen = new MenuScreen(this);
         
         if (showSplash) {
             setScreen(new SplashScreen(this)); 
         } else {
-            setScreen(gameScreen);
+            setScreen(menuScreen);
         }
         
         /*
@@ -58,5 +60,6 @@ public class Agenthon extends Game {
         super.dispose();
         Gdx.app.debug(TAG, "Agenthon.dispose()");
         gameScreen.dispose();
+        menuScreen.dispose();
     }
 }
