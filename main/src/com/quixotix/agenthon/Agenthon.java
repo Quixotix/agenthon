@@ -11,7 +11,7 @@ public class Agenthon extends Game {
 
     public static final String TAG = "Agenthon";
     
-    private static boolean showSplash = false;
+    private static boolean showSplash = true;
     
     // screens
     public GameScreen gameScreen;

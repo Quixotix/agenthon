@@ -7,12 +7,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
 public class MenuScreen implements Screen {
 
@@ -28,7 +31,7 @@ public class MenuScreen implements Screen {
     
     @Override
     public void render(float delta) {    
-        Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
     }
@@ -47,17 +50,30 @@ public class MenuScreen implements Screen {
 		//Skin skin = new Skin(Gdx.files.internal("skins/ui.json"), 
 		//                     Gdx.files.internal("buttons/ui.png"));
 		
-		// boring defualt font and style
-		TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
-		BitmapFont font = new BitmapFont();
+		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("textures/images-packed.atlas"));
+		Skin skin = new Skin(Gdx.files.internal("skins/buttons.json"), atlas);
+		//skin.addRegions(atlas);
+		//TextButtonStyle style = skin.get("default", TextButtonStyle.class);
+		//BitmapFont font = new BitmapFont();
 		
-		style.fontColor = Color.WHITE;
-		style.downFontColor = Color.RED;
-		style.font = font;
+		
+		
+		//style.fontColor = Color.WHITE;
+		//style.downFontColor = Color.RED;
+		//style.font = font;
 		
 		// buttons
-		TextButton playButton = new TextButton("Play Game", style);
+		TextButton playButton = new TextButton("Play Game", skin, "green");
+		playButton.setPosition(450, 350);
 		stage.addActor(playButton);
+		
+		TextButton optionsButton = new TextButton("Options", skin, "green");
+		optionsButton.setPosition(450, 200);
+		stage.addActor(optionsButton);
+		
+		TextButton helpButton = new TextButton("Help", skin, "green");
+		helpButton.setPosition(450, 50);
+		stage.addActor(helpButton);
 		
     }
     
