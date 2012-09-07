@@ -16,6 +16,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 public class MenuScreen implements Screen {
 
@@ -65,6 +67,14 @@ public class MenuScreen implements Screen {
 		// buttons
 		TextButton playButton = new TextButton("Play Game", skin, "green");
 		playButton.setPosition(450, 350);
+		playButton.addListener(new InputListener() {
+		    public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                    return true;
+            }
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                game.setScreen(game.gameScreen);
+            }
+		});
 		stage.addActor(playButton);
 		
 		TextButton optionsButton = new TextButton("Options", skin, "green");
