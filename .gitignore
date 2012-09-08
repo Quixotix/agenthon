@@ -1,6 +1,5 @@
 # libgdx nightly build but not the fetch/install script
-libgdx/*.*
-!libgdx/
+libgdx/*
 !libgdx/fetch.sh
 
 
