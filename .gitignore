@@ -1,3 +1,9 @@
+# libgdx nightly build but not the fetch/install script
+libgdx/*.*
+!libgdx/
+!libgdx/fetch.sh
+
+
 # built application files
 *.apk
 *.ap_
@@ -16,9 +22,12 @@ gen/
 local.properties
 
 
-# ignore the copy of gdx.jar created by agenthon-android/custom_rules.xml
+# ignore the copy of gdx.jar created by android/custom_rules.xml
 android/libs/gdx.jar
 
-# ignore files packed during build
+# ignore texture files packed during build
 images-packed.atlas
 images-packed.png
+
+
+

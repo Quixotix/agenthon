@@ -49,26 +49,16 @@ public class MenuScreen implements Screen {
 		float height = Gdx.graphics.getHeight();
 		stage = new Stage(width, height, true);
 		
-		//Skin skin = new Skin(Gdx.files.internal("skins/ui.json"), 
-		//                     Gdx.files.internal("buttons/ui.png"));
-		
+		// TODO: store and dispose texture atlas in Agenthon class?
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("textures/images-packed.atlas"));
 		Skin skin = new Skin(Gdx.files.internal("skins/buttons.json"), atlas);
-		//skin.addRegions(atlas);
-		//TextButtonStyle style = skin.get("default", TextButtonStyle.class);
-		//BitmapFont font = new BitmapFont();
-		
-		
-		
-		//style.fontColor = Color.WHITE;
-		//style.downFontColor = Color.RED;
-		//style.font = font;
 		
 		// buttons
 		TextButton playButton = new TextButton("Play Game", skin, "green");
 		playButton.setPosition(450, 350);
 		playButton.addListener(new InputListener() {
 		    public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+		        // must return true for touchUp event
                 return true;
             }
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {

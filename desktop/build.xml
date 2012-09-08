@@ -47,7 +47,6 @@
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
-        
     </target>
     
     <target name="compile" depends="pre-compile">
