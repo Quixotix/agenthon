@@ -3,7 +3,7 @@
     
     <property name="root.dir" value=".." />
     <property name="images.absolute.dir" location="${root.dir}/images" />
-    <property name="tools.absolute.dir" location="${root.dir}/tools" />
+    <property name="libgdx.absolute.dir" location="${root.dir}/libgdx" />
     
     <property name="main.dir" value="${root.dir}/main" />
     <property name="main.src.dir" value="${main.dir}/src"/>
@@ -29,18 +29,24 @@
         <delete dir="${out.dir}" verbose="${verbose}" />
     </target>
     
-    <target name="pre-compile">
+    <target name="init-build">
         <mkdir dir="${out.dir}" />
         <mkdir dir="${out.assets.dir}" />
         <mkdir dir="${out.classes.absolute.dir}" />
+    </target>
+
+    <target name="pack-textures" depends="init-build">
         <!-- pack textures -->
         <java 
             classname="com.badlogic.gdx.tools.imagepacker.TexturePacker2" 
-            classpath="${tools.absolute.dir}/gdx.jar:${tools.absolute.dir}/gdx-tools.jar">
+            classpath="${libgdx.absolute.dir}/gdx.jar:${libgdx.absolute.dir}/extensions/gdx-tools.jar">
             <arg value="${images.absolute.dir}" />
             <arg value="${assets.absolute.dir}/textures" />
             <arg value="images-packed" />
         </java>
+    </target>
+    
+    <target name="copy-assets" depends="pack-textures">
         <!-- copy assets from android project -->
         <copy includeemptydirs="false" todir="${out.assets.dir}">
             <fileset dir="${assets.dir}">
@@ -49,7 +55,7 @@
         </copy>
     </target>
     
-    <target name="compile" depends="pre-compile">
+    <target name="compile" depends="init-build,pack-textures,copy-assets">
         <path id="javac.classpath">
             <fileset dir="${libs.absolute.dir}">
                 <include name="**/*.jar" />
