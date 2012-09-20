@@ -67,9 +67,18 @@ public class MenuScreen implements Screen {
 		});
 		stage.addActor(playButton);
 		
-		TextButton optionsButton = new TextButton("Options", skin, "green");
-		optionsButton.setPosition(450, 200);
-		stage.addActor(optionsButton);
+		TextButton testButton = new TextButton("Test", skin, "green");
+		testButton.setPosition(450, 200);
+		testButton.addListener(new InputListener() {
+		    public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+		        // must return true for touchUp event
+                return true;
+            }
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                game.setScreen(game.testScreen);
+            }
+		});
+		stage.addActor(testButton);
 		
 		TextButton helpButton = new TextButton("Help", skin, "green");
 		helpButton.setPosition(450, 50);
