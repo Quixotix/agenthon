@@ -20,13 +20,16 @@ gen/
 # Local configuration file (sdk path, etc)
 local.properties
 
-
 # ignore the copy of gdx.jar created by android/custom_rules.xml
 android/libs/gdx.jar
 
 # ignore texture files packed during build
 images-packed.atlas
 images-packed.png
+
+# ignore IntelliJ files
+.idea
+*.iml
 
 
 
