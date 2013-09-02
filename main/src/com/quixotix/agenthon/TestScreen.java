@@ -48,7 +48,8 @@ public class TestScreen implements InputProcessor, Screen {
         
         // this class AND the actor are input processors
         InputMultiplexer inputMultiplexer = new InputMultiplexer(this, stage);
-        Gdx.input.setInputProcessor(inputMultiplexer);  
+        Gdx.input.setInputProcessor(inputMultiplexer);
+        Gdx.input.setCatchBackKey(true);
     }
 
     @Override
