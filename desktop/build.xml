@@ -39,7 +39,7 @@
         <!-- pack textures -->
         <java 
             classname="com.badlogic.gdx.tools.imagepacker.TexturePacker2" 
-            classpath="${libgdx.absolute.dir}/gdx.jar:${libgdx.absolute.dir}/extensions/gdx-tools.jar">
+            classpath="${libgdx.absolute.dir}/gdx.jar:${libgdx.absolute.dir}/extensions/gdx-tools/gdx-tools.jar">
             <arg value="${images.absolute.dir}" />
             <arg value="${assets.absolute.dir}/textures" />
             <arg value="images-packed" />
