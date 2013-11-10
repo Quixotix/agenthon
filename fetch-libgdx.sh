@@ -8,7 +8,7 @@ message(){
     echo -e "\E[0;37m"
 }
 
-cd libgdx
+mkdir -p libgdx && cd libgdx
 
 message "Downloading $LIBGDX_ZIP ..."
 
